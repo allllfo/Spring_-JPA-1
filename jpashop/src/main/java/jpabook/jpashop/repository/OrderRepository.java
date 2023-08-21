@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -20,5 +21,7 @@ public class OrderRepository {
         return em.find(Order.class, id);
     }
 
-   //  public List<Order> findAll(OrderSearch orderSearch) {} => 검색 기능 나중
+    /*public List<Order> findAll(OrderSearch orderSearch) { QueryDSL 나오는 장에서 하기
+    }
+     */
 }
