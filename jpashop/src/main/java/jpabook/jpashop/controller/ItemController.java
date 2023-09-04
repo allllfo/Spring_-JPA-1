@@ -58,25 +58,27 @@ public class ItemController {
         form.setAuthor(item.getAuthor());
         form.setIsbn(item.getIsbn());
 
+
         model.addAttribute("form", form); // form 에 데이터가 넘어감
         return "items/updateItemForm";
 
     }
 
     @PostMapping("items/{itemId}/edit")
-    public String updateItem(@PathVariable String itemId, @ModelAttribute("form") BookForm form) //"form"말고 다른 이름도 괜찮지만, "form"으로한다.
+    public String updateItem(@PathVariable Long itemId, @ModelAttribute("form") BookForm form) //"form"말고 다른 이름도 괜찮지만, "form"으로한다.
     {
+
+        /* 엔티티 어설프게 생성 X
         Book book = new Book();
+        form.setId(item.getId());
+        form.setName(item.getName());
+        form.setPrice(item.getPrice());
+        form.setStockQuantity(item.getStockQuantity());
+        form.setAuthor(item.getAuthor());
+        form.setIsbn(item.getIsbn());
+         */
 
-        //form을 다시 Book 으로 바꿔줘야함
-        book.setId(form.getId());
-        book.setName(form.getName());
-        book.setPrice(form.getPrice());
-        book.setStockQuantity(form.getStockQuantity());
-        book.setAuthor(form.getAuthor());
-        book.setIsbn(form.getIsbn());
-
-        itemService.saveItem(book);
+        itemService.updateItem(itemId, form.getName(), form.getPrice(), form.getStockQuantity());
         return "redirect:/items";
     }
 }
